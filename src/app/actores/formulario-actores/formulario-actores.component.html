@@ -1,0 +1,22 @@
+<form [formGroup]="form">
+
+    <mat-form-field appareance="outline">
+
+        <mat-label>Nombre</mat-label>
+        <input mat-input [formControl]="forms.controls.nombre">
+        <mat-error></mat-error>
+
+    </mat-form-field>
+
+    <mat-form-field appareance="outline">
+        <mat-label>Fecha de Nacimiento</mat-label>
+        <input mat-input [matPicker]="picker" [formControl]="form.controls.fechaNcimiento" />
+        <mat-date-picker #picker></mat-date-picker>
+        <mat-date-picker-tootler matSuffix [for]="picker"></mat-date-picker-tootler>
+    </mat-form-field>
+
+    <div class="contenedor-botones">
+        <button type="submit" mat-flat-button [disabled]="form.invalid">Guardar cambios</button>
+        <a mat-stroked-button routerLink="/actores">Cancelar</a>
+    </div>
+</form>
