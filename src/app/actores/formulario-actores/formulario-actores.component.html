@@ -1,18 +1,15 @@
 <form [formGroup]="form">
-
-    <mat-form-field appareance="outline">
-
+    <mat-form-field appearance="outline">
         <mat-label>Nombre</mat-label>
-        <input mat-input [formControl]="forms.controls.nombre">
+        <input mat-input [formControl]="form.controls.nombre">
         <mat-error></mat-error>
-
     </mat-form-field>
 
-    <mat-form-field appareance="outline">
+    <mat-form-field appearance="outline">
         <mat-label>Fecha de Nacimiento</mat-label>
-        <input mat-input [matPicker]="picker" [formControl]="form.controls.fechaNcimiento" />
-        <mat-date-picker #picker></mat-date-picker>
-        <mat-date-picker-tootler matSuffix [for]="picker"></mat-date-picker-tootler>
+        <input matInput [matDatepicker]="picker" [formControl]="form.controls.fechaNacimiento" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 
     <div class="contenedor-botones">

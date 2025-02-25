@@ -10,13 +10,12 @@ import { FormularioGeneroComponent } from '../formulario-genero/formulario-gener
 
 @Component({
   selector: 'app-crear-generos',
-  imports: [MatButtonModule, RouterLink, ReactiveFormsModule, MatInputModule, FormularioGeneroComponent],
+  imports: [MatButtonModule, ReactiveFormsModule, MatInputModule, FormularioGeneroComponent],
   templateUrl: './crear-generos.component.html',
   styleUrl: './crear-generos.component.css'
 })
 export class CrearGenerosComponent {
 
-  private router = inject(Router);
   
   guardarCambios(genero: GeneroCreationDTO){
 
