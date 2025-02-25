@@ -22,3 +22,7 @@ provideMomentDateAdapter({
   }
 })]
 };
+function provideMomentDateAdapter(arg0: { parse: { dateInput: string[]; }; display: { dateInput: string; monthYearLabel: string; dateA11yLabel: string; monthYearA11yLabel: string; }; }): import("@angular/core").Provider | import("@angular/core").EnvironmentProviders {
+  throw new Error('Function not implemented.');
+}
+
