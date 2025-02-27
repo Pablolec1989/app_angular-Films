@@ -13,7 +13,6 @@ export class SelectorMultipleComponent {
   @Input({required: true})
   Seleccionados!: SelectorMultipleDTO[];
 
-  
   @Input({required: true})
   NoSeleccionados!: SelectorMultipleDTO[];
 

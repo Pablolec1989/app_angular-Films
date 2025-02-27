@@ -2,6 +2,7 @@ import { Component, Input, numberAttribute } from '@angular/core';
 import { PeliculaCreacionDTO, PeliculaDTO } from '../peliculas';
 import { FormularioPeliculasComponent } from "../formulario-peliculas/formulario-peliculas.component";
 import { SelectorMultipleDTO } from '../../compartidos/componentes/selector-multiple/selectorMultipleModelo';
+import { actorAutoCompleteDTO } from '../../actores/actores';
 
 @Component({
   selector: 'app-editar-pelicula',
@@ -25,6 +26,7 @@ export class EditarPeliculaComponent {
 
   }
 
+  //Generos
   generosSeleccionados: SelectorMultipleDTO[] = [
     {llave: 2, valor: "Acción"}];
 
@@ -32,6 +34,18 @@ export class EditarPeliculaComponent {
     {llave: 1, valor: "Drama"},
     {llave: 3, valor: "Comedia"}
   ];
+
+    //Cines
+    cinesSeleccionados: SelectorMultipleDTO[] = [{llave: 2, valor: "Blue Mall"}];
+
+    cinesNoSeleccionados: SelectorMultipleDTO[] = [
+      {llave: 1, valor: "Agora Mall"},
+      {llave: 3, valor: "Akropolis"}
+    ];
+
+    actoresSeleccionados: actorAutoCompleteDTO[] = [
+      { id: 2, nombre: 'Tom Hanks', personaje: 'Forrest Gump', foto: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Tom_Hanks_TIFF_2019.jpg/220px-Tom_Hanks_TIFF_2019.jpg' }
+    ]
 
   guardarCambios(pelicula: PeliculaCreacionDTO){
     console.log('creando pelicula', pelicula);

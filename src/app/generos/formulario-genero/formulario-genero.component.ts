@@ -47,7 +47,6 @@ export class FormularioGeneroComponent implements OnInit {
     if(!this.form.value){
       return;
     }
-
     const genero = this.form.value as GeneroCreationDTO;
     this.posteoFormulario.emit(genero);
     
