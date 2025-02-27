@@ -11,7 +11,7 @@ import { FormularioGeneroComponent } from '../formulario-genero/formulario-gener
 export class EditarGeneroComponent {
 
   @Input({transform: numberAttribute})
-  id!:number;
+  id!: number;
 
   genero: GeneroDTO = {id:1, nombre:"Drama"}
 
