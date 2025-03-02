@@ -78,18 +78,20 @@ export class FormularioActoresComponent implements OnInit {
 
     }
 
-
     guardarCambios(){
-        if(!this.form.valid){
-            return;
+        if (!this.form.valid){
+          return;
         }
+    
         const actor = this.form.value as ActorCreationDTO;
         actor.fechaNacimiento = moment(actor.fechaNacimiento).toDate();
-
-        if(typeof actor.foto === "string"){
-            actor.foto = undefined;
+    
+        if (typeof actor.foto === "string"){
+          actor.foto = undefined;
         }
-
+    
         this.posteoFormulario.emit(actor);
-    };
-}
+    
+      }
+    
+    }

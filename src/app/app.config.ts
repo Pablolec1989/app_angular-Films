@@ -1,4 +1,4 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { provideMomentDateAdapter } from '@angular/material-moment-adapter';
 
@@ -6,6 +6,7 @@ import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { provideHttpClient, withFetch } from '@angular/common/http';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -24,7 +25,8 @@ export const appConfig: ApplicationConfig = {
       monthYearA11yLabel: 'MMMM YYYY'
     }
   }),
-  provideHttpClient(withFetch())
+  provideHttpClient(withFetch()),
+  importProvidersFrom([SweetAlert2Module.forRoot()])
 ]
 };
 
