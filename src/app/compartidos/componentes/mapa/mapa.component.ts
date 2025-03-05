@@ -10,51 +10,62 @@ import { Coordenada } from './coordenada';
   styleUrl: './mapa.component.css'
 })
 export class MapaComponent implements OnInit {
-  
+
   ngOnInit(): void {
     this.capas = this.coordenadasIniciales.map(valor => {
       const marcador = marker([valor.latitud, valor.longitud], this.markerOptions);
+
+      if(valor.texto){
+        marcador.bindPopup(valor.texto, {autoClose: false, autoPan: false});
+      }
       return marcador;
-    })
+    });
   }
 
   @Input()
   coordenadasIniciales: Coordenada[] = [];
 
-  @Output()
-  coordenadaSeleccionada = new EventEmitter<Coordenada>()
+  @Input()
+  soloLectura = false;
 
-  //Config de icono
+  @Output()
+  coordenadaSeleccionada = new EventEmitter<Coordenada>();
+
   markerOptions: MarkerOptions = {
-    icon: icon({iconSize: [25,41],
-      iconAnchor: [13,41],
+    icon: icon({
+      iconSize: [25, 41],
+      iconAnchor: [13, 41],
       iconUrl: 'assets/marker-icon.png',
       iconRetinaUrl: 'assets/marker-icon-2x.png',
       shadowUrl: 'assets/marker-shadow.png'
     })
   }
 
-
-  //Config
   options = {
     layers: [
-      tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' })
+      tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        attribution: '...'
+      })
     ],
-    zoom: 18,
-    center: latLng(-43.291941812835596, -65.49902730368198)
-  };
+    zoom: 14,
+    center: latLng(-43.2914402, -65.4933627,14)
+  }
 
   capas: Marker<any>[] = [];
 
   manejarClick(event: LeafletMouseEvent){
 
-    const latitud = event.latlng.lat;
+    if(this.soloLectura){
+      return;
+    }
+
+    const latitud = event.latlng.lat; 
     const longitud = event.latlng.lng;
 
     this.capas = [];
-    this.capas.push(marker([latitud, longitud], this.markerOptions))
-    this.coordenadaSeleccionada.emit({latitud, longitud});
-
+    this.capas.push(marker([latitud, longitud], this.markerOptions));
+    this.coordenadaSeleccionada.emit({latitud, longitud})
   }
 
 }

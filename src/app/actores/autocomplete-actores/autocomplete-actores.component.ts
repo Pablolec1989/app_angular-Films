@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild, viewChild } from '@angular/core';
+import { Component, inject, Input, OnInit, ViewChild, viewChild } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -7,6 +7,7 @@ import { MatTable, MatTableModule } from '@angular/material/table';
 import { MatAutocompleteModule, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { actorAutoCompleteDTO } from '../actores';
 import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop'
+import { ActoresService } from '../actores.service';
 
 @Component({
   selector: 'app-autocomplete-actores',
@@ -23,18 +24,20 @@ import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-
   templateUrl: './autocomplete-actores.component.html',
   styleUrl: './autocomplete-actores.component.css'
 })
-export class AutocompleteActoresComponent {
+export class AutocompleteActoresComponent implements OnInit {
+
+  ngOnInit(): void {
+    this.control.valueChanges.subscribe (valor => {
+      if(typeof valor === 'string' && valor){ 
+        this.actoresService.obtenerPorNombre(valor).subscribe(actores => this.actores = actores)
+      }
+    })
+  }
 
   control = new FormControl();
+  actoresService = inject(ActoresService)
 
-  actores: actorAutoCompleteDTO[] = [
-    {
-      id: 1, nombre: 'Tom Holland', personaje: '', foto: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Tom_Holland_by_Gage_Skidmore.jpg/220px-Tom_Holland_by_Gage_Skidmore.jpg'
-    },
-    { id: 2, nombre: 'Tom Hanks', personaje: '', foto: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Tom_Hanks_TIFF_2019.jpg/220px-Tom_Hanks_TIFF_2019.jpg' },
-    { id: 3, nombre: 'Samuel L. Jackson', personaje: '', foto: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/SamuelLJackson.jpg/250px-SamuelLJackson.jpg' },
-
-  ];
+  actores: actorAutoCompleteDTO[] = [];
 
   @Input({required: true})
   actoresSeleccionados: actorAutoCompleteDTO[] = [];

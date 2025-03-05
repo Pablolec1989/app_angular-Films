@@ -5,11 +5,12 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment.development';
 import { paginacionDTO } from '../compartidos/modelos/paginacionDTOs';
 import { construirQueryParams } from '../compartidos/funciones/construirQueryParams';
+import { IServicioCRUD } from '../compartidos/interfaces/IServicioCRUD';
 
 @Injectable({
   providedIn: 'root'
 })
-export class GenerosService {
+export class GenerosService implements IServicioCRUD<GeneroDTO, GeneroCreationDTO>{
 
   private http = inject(HttpClient)
   private urlBase = environment.apiURL + '/generos';
@@ -17,26 +18,27 @@ export class GenerosService {
   constructor() { }
 
   public obtenerPaginado(paginacion: paginacionDTO): Observable<HttpResponse<GeneroDTO[]>>{
-
     let queryParams = construirQueryParams(paginacion);
     return this.http.get<GeneroDTO[]>(this.urlBase, {params: queryParams, observe: 'response'});
-
   }
 
   public obtenerPorId(id: number):Observable<GeneroDTO>{
     return this.http.get<GeneroDTO>(`${this.urlBase}/${id}`);
   }
 
-  public actualizar(id:number, genero: GeneroCreationDTO){
+  public obtenerTodos(): Observable<GeneroDTO[]>{
+    return this.http.get<GeneroDTO[]>(`${this.urlBase}/todos`);
+  }
+
+  public actualizar(id:number, genero: GeneroCreationDTO): Observable<any>{
     return this.http.put(`${this.urlBase}/${id}`, genero);
   }
   
-  public crear(genero: GeneroCreationDTO){
+  public crear(genero: GeneroCreationDTO): Observable<any>{
     return this.http.post(this.urlBase, genero);
   }
 
-  public borrar(id:number){
-
+  public borrar(id:number): Observable<any>{
     return this.http.delete(`${this.urlBase}/${id}`);
   }
 
