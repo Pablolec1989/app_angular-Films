@@ -17,5 +17,4 @@ import { FormularioCinesComponent } from '../formulario-cines/formulario-cines.c
 })
 export class IndiceCinesComponent {
 
-
 }

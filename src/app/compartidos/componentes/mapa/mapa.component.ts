@@ -12,15 +12,19 @@ import { Coordenada } from './coordenada';
 export class MapaComponent implements OnInit {
 
   ngOnInit(): void {
+    console.log("Coordenadas iniciales en MapaComponent:", this.coordenadasIniciales);
     this.capas = this.coordenadasIniciales.map(valor => {
       const marcador = marker([valor.latitud, valor.longitud], this.markerOptions);
+      console.log("Marcador creado:", marcador); // Verifica la creación del marcador
 
       if(valor.texto){
         marcador.bindPopup(valor.texto, {autoClose: false, autoPan: false});
       }
       return marcador;
+
     });
   }
+
 
   @Input()
   coordenadasIniciales: Coordenada[] = [];

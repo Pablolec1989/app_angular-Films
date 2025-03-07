@@ -4,3 +4,49 @@ mat-toolbar {
     top: 0;
     z-index: 1000;
 }
+
+app-autorizado {
+    display: flex;
+}
+
+.espacio {
+    flex: 1 1 auto;
+}
+
+.boton-logout {
+    background-color: #f44336;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none; /* Elimina el subrayado del enlace */
+    margin-left: 20px;
+  }
+  
+  .boton-logout:hover {
+      background-color: #d32f2f; /* Un color ligeramente más oscuro al pasar el ratón */
+  }
+
+  .boton-login {
+    background-color: #006400; /* Verde oscuro */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none; /* Elimina el subrayado del enlace */
+  }
+  
+  .boton-login:hover {
+      background-color: #004d00; /* Un color ligeramente más oscuro al pasar el ratón */
+  }
+
+  .boton-registro {
+    background-color: #808080; /* Gris */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none; /* Elimina el subrayado del enlace */
+    margin-left: 20px;
+  }
+  
+  .boton-registro:hover {
+      background-color: #696969; /* Un color ligeramente más oscuro al pasar el ratón */
+  }
